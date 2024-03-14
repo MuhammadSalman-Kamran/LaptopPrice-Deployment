@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Car Price Predictor</title>
+    <style>
+  </style>
+  </head>
+  <body>
+    <div class="container my-3">
+        <h2 class="text-center">Laptop Price Predictor</h2>
+        <form action="{{ url_for('index')}}" method="post">
+            
+            <div class="form-group">
+                <label for="brand"><b>Brand:</b></label>
+                <select class="form-control" id="brand"  name = 'brand'>
+                {% for brand in companies %}    
+                    <option value="{{brand}}">{{brand}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="type"><b>Laptop Type:</b></label>
+                <select class="form-control" id="type"  name = 'type'>
+                {% for type in type_names %}    
+                    <option value="{{type}}">{{type}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ram"><b>RAM (in GBs):</b></label>
+                <select class="form-control" id="ram" value = 'ram' name = 'ram'>
+                {% for ram in rams %}    
+                    <option value="{{ram}}">{{ram}}</option>
+                {% endfor %}
+                </select>
+            
+            </div>
+            <div class="form-group">
+                <label for="weight"><b>Weight</b></label>
+                <input type="number" class="form-control" name="weight" value = 'weight' id="weight" >
+            </div>
+            <div class="form-group">
+                <label for="os"><b>OS:</b></label>
+                <select class="form-control" id="os" value = 'os' name="os">
+                {% for os in os_s %}    
+                    <option value="{{os}}">{{os}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gpu"><b>GPU:</b></label>
+                <select class="form-control" id="gpu" value = 'gpu' name="gpu">
+                {% for gpu in gpu_brands %}    
+                    <option value="{{gpu}}">{{gpu}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="TouchScreen"><b>TouchScreen:</b></label>
+                <select class="form-control" id="touch" value = 'touch' name="touch">
+                {% for touch in touch_screens %}    
+                    <option value="{{touch}}">{{touch}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="display"><b>IPS Display:</b></label>
+                <select class="form-control" id="display" value = 'display' name="ips">
+                {% for ips in ips_s %}    
+                    <option value="{{ips}}">{{ips}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hard_drive"><b>Hard Drive:</b></label>
+                <select class="form-control" id="hard_drive" value = 'hard_drive' name="hdd">
+                {% for hdd in hdd_s %}    
+                    <option value="{{hdd}}">{{hdd}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ssd"><b>SSD (in GBs):</b></label>
+                <select class="form-control" id="ssd" value = 'ssd' name="ssd">
+                {% for ssd in ssd_s %}    
+                    <option value="{{ssd}}">{{ssd}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <!-- <div class="form-group">
+                <label for="resolution"><b>Screen Resolution:</b></label>
+                <select class="form-control" id="resolution" value = 'resolution' name="resolution">
+                {% for hdd in hdd_s %}    
+                    <option value="{{hdd}}">{{hdd}}</option>
+                {% endfor %}
+                </select>
+            </div> -->
+        <div class="form-group">
+            <label for="s_size"><b>Screen Size</b></label>
+            <input type="number" class="form-control" name="s_size" value = 's_size' id="s_size" >
+        </div>
+            <div class="form-group">
+                <label for="processor"><b>Procssor:</b></label>
+                <select class="form-control" id="processor" value = 'processor' name="cpu">
+                {% for cpu in cpu_brands %}    
+                    <option value="{{cpu}}">{{cpu}}</option>
+                {% endfor %}
+                </select>
+            
+
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Predict your Price" required />
+            </div>
+        </form>
+        <h2>The Predicted Price is <b>{{prediction}}</b></h2>
+        </div>
+    </div>
+</div>
+    
+<!-- <script>
+
+    function form_data(event){
+        event.preventDefault()
+    }
+
+    function send_data(){
+        document.querySelector('form').addEventListener('submit', form_data);
+
+        var fd = new FormData(document.querySelector('form'))
+        var xhr = new XMLHttpRequest()
+
+        xhr.open('POST','/predict', 'true')
+        document.getElementById('predict_value').innerHTML = 'Wait ! Predicting Price.'
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == XMLHttpRequest.DONE){
+                document.getElementById('predict_value').innerHTML = 'Predicting Price : '+ xhr.responseText;
+            }
+        }
+
+        xhr.onload = function(){};
+        xhr.send(fd)
+
+
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ -->
+
+</body>
+</html>

@@ -21,6 +21,13 @@ def save_obj(file_path, obj):
     except Exception as e:
         raise CustomException(e, sys)
     
+def load_obj(file_path):
+    try:
+        logging.info('Starting loading the object')
+        return pickle.load(open(file_path, 'rb'))
+    except Exception as e:
+        raise CustomException(e, sys)
+    
 
 def evaluate_model(model, train_input, train_output, test_input, test_output):
     try:
