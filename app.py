@@ -4,9 +4,9 @@ import numpy as np
 from src.pipeline.predict_pipeline import CustomDataClass, Prediction
 df = pd.read_csv('notebook\data\Clean_Laptop.csv')
 
-application = Flask(__name__)
+app = Flask(__name__)
 
-@application.route('/', methods = ['GET', 'POST'])
+@app.route('/', methods = ['GET', 'POST'])
 def index():
     if request.method == 'GET':
         company = sorted(df['Company'].unique())
@@ -46,4 +46,4 @@ def index():
     
 
 if __name__ == '__main__':
-    application.run(debug=True)
+    app.run(host = "0.0.0.0")
