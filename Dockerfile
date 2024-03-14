@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . /app
 
-RUN apt update -y && apt install awscli -y
-
-RUN apt-get update && apt-get install ffmpeg libsm6 libxext6 unzip -y && pip install -r requirements.txt
+RUN apk update && \
+    apk add --no-cache aws-cli ffmpeg libsm6 libxext6 unzip && \
+    pip install --no-cache-dir -r requirements.txt
 
 CMD ["python3", "app.py"]
