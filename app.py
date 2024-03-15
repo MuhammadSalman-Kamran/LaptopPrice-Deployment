@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import pandas as pd
 import numpy as np
+
 from src.pipeline.predict_pipeline import CustomDataClass, Prediction
 df = pd.read_csv('notebook\data\Clean_Laptop.csv')
 
