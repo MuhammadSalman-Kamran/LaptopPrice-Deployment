@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template
 import pandas as pd
 import numpy as np
-import os
 from src.pipeline.predict_pipeline import CustomDataClass, Prediction
 df = pd.read_csv('notebook/data/Clean_Laptop.csv')
 app = Flask(__name__)
@@ -46,6 +45,4 @@ def index():
     
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port = 8080, debug = True)
-
-# port=int(os.environ.get('PORT', 80))
+    app.run(host= '0.0.0.0', port=8080)
