@@ -89,6 +89,7 @@ jobs:
       # - name: Stop and remove container if running
       #   run: |
       #    docker ps -q --filter "name=pricepredictor" | grep -q . && docker stop pricepredictor && docker rm -fv pricepredictor
+
        
       - name: Run Docker Image to serve users
         run: |
