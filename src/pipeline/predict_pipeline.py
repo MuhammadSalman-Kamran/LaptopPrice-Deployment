@@ -21,6 +21,7 @@ class Prediction:
 
 
 
+
 class CustomDataClass:
     def __init__(self, company, type_name, ram, weight, touch_screen, ips, ppi,cpu_brand, hdd, ssd, gpu_brand, os):
         self.company = company

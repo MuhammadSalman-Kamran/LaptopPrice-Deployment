@@ -22,7 +22,7 @@ class DataIngestion:
         logging.info('Welcome to the initial Data Ingestion Phase of the data!')
         try:
             logging.info('Reading the data into DataFrame')
-            df = pd.read_csv('notebook\data\Clean_Laptop.csv')
+            df = pd.read_csv('notebook/data/Clean_Laptop.csv')
 
             logging.info('Making the artifacts Directory')
             os.makedirs(os.path.dirname(self.data_ingestion_config.sample_data_file_path), exist_ok=True)
@@ -46,12 +46,12 @@ class DataIngestion:
         except Exception as e:
             raise CustomException(e, sys)
         
-# if __name__ == '__main__':
-#     obj = DataIngestion()
-#     train_df, test_df = obj.ingest_data()
+if __name__ == '__main__':
+    obj = DataIngestion()
+    train_df, test_df = obj.ingest_data()
 
-#     transformation_obj = DataTransformation()
-#     train_input_arr, test_input_arr = transformation_obj.init_transform(train_df, test_df)
+    transformation_obj = DataTransformation()
+    train_input_arr, test_input_arr = transformation_obj.init_transform(train_df, test_df)
 
-#     train_model_obj = ModelTraining()
-#     train_model_obj.init_training(train_df, train_input_arr,test_df, test_input_arr)
+    train_model_obj = ModelTraining()
+    train_model_obj.init_training(train_df, train_input_arr,test_df, test_input_arr)
